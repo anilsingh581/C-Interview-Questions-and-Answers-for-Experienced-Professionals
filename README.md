@@ -29,6 +29,7 @@ namespace CSharpConceptsConsoleApp
 {
 
    #region To find the duplicate records in an integer array in C# - int[] abc = { 1, 2, 3, 4, 5, 2, 1 };
+   
     /*
     class duplicateRecords
     {
