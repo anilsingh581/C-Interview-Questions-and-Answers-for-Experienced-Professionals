@@ -27,9 +27,70 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace CSharpConceptsConsoleApp
 {
+    #region Overloading Usage
+    /*
+        Yes, method overloading in C# allows you to define multiple methods with the same name but different parameter types, number of parameters, or both.
 
-   #region To find the duplicate records in an integer array in C# - int[] abc = { 1, 2, 3, 4, 5, 2, 1 };
-   
+        In your case, the two Test methods:
+
+        public int Test(int? a)
+        public string Test(string b)
+        Are valid overloads, because they differ in the types of parameters (one takes a nullable int and the other takes a string).
+
+        Explanation:
+        The first method takes a nullable int (int?), which allows it to accept both int values and null.
+        The second method takes a string.
+        Since these methods have different parameter types, C# can distinguish between them based on the argument passed, so overloading works correctly in this case.
+     
+
+        Things to Keep in Mind:
+        Return Type: In method overloading, the return type does not contribute to differentiating the methods. The method signatures must differ in the parameters.
+        Nullable Types: int? is a nullable type, which means it can hold both an integer value and null. This makes it different from a non-nullable int, allowing overloading based on this difference.
+     */
+    public class OverloadingExample
+    {
+        // Method accepting nullable int
+        public int Test(int? a)
+        {
+            if (a.HasValue)
+            {
+                // Do something with 'a'
+                return a.Value;
+            }
+            return 0;  // Return a default value if 'a' is null
+        }
+
+        // Method accepting string
+        public string Test(string b)
+        {
+            if (string.IsNullOrEmpty(b))
+            {
+                return "Input is null or empty";
+            }
+            return $"You entered: {b}";
+        }
+    }
+
+    public class Program
+    {
+        public static void Main()
+        {
+            OverloadingExample example = new OverloadingExample();
+
+            // Calling Test with an int? (nullable int)
+            int result1 = example.Test(10);      // Output: 10
+            int result2 = example.Test((int?)null);    // Output: 0
+
+            // Calling Test with a string
+            string result3 = example.Test("Hello");  // Output: "You entered: Hello"
+            string result4 = example.Test("");      // Output: "Input is null or empty"
+        }
+    }
+
+    #endregion
+
+    #region To find the duplicate records in an integer array in C# - int[] abc = { 1, 2, 3, 4, 5, 2, 1 };
+
     /*
     class duplicateRecords
     {
@@ -1623,7 +1684,7 @@ namespace CSharpConceptsConsoleApp
     /// </summary>
     /// 
     #region checks whether a number is even or not
-    /*
+    /* 
     public static class IntExtensions
     {
         public static bool IsEven(this int number)
@@ -1642,7 +1703,7 @@ namespace CSharpConceptsConsoleApp
             Console.WriteLine($"{number} is even: {isEven}");
         }
     }
-    */
+   */
     #endregion
 
 
